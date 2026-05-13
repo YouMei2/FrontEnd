@@ -223,33 +223,56 @@ function renderPerfectWheel(canvasId, data) {
     const ctx = canvas.getContext('2d');
     currentWheelData = data;
 
+    // --- NEW: Dynamic scaling ---
+    function updateCanvasSize() {
+        const container = canvas.parentElement;
+        const containerWidth = container.clientWidth;
+        
+        // On mobile, use container width, on desktop cap at 550
+        const size = Math.min(containerWidth, 550);
+        
+        canvas.width = size;
+        canvas.height = size;
+    }
+
     function draw() {
         if (!currentWheelData) return;
+        
+        updateCanvasSize(); // Update size every frame (or just once on resize)
+        
         const width = canvas.width;
         const height = canvas.height;
         const centerX = width / 2;
         const centerY = height / 2;
-        const squareSize = 400;
+
+        // --- NEW: squareSize now depends on canvas width ---
+        // We leave 100px for labels (50px each side)
+        const squareSize = width - 120; 
         const maxRadius = squareSize / 2;
-        const labelRadius = maxRadius + 50;
+        const labelRadius = maxRadius + 35; // Slightly closer labels for mobile
 
         ctx.clearRect(0, 0, width, height);
+        
+        // ... (rest of your logic for scores)
         const scores = currentWheelData.map(d => d.score).filter(s => s > 0);
         const minScore = scores.length > 0 ? Math.min(...scores) : null;
 
+        // Draw background circles
         for (let i = 1; i <= 10; i++) {
             const radius = (maxRadius / 10) * i;
-            ctx.strokeStyle = '#000000'; ctx.lineWidth = 1.5;
+            ctx.strokeStyle = '#000000'; ctx.lineWidth = 1;
             ctx.beginPath(); ctx.arc(centerX, centerY, radius, 0, Math.PI * 2); ctx.stroke();
         }
 
+        // Draw axes
         for (let i = 0; i < 8; i++) {
             const angle = (Math.PI / 4) * i - Math.PI / 2;
             ctx.beginPath(); ctx.moveTo(centerX, centerY);
-            ctx.lineTo(centerX + Math.cos(angle) * (maxRadius * 1.41), centerY + Math.sin(angle) * (maxRadius * 1.41));
+            ctx.lineTo(centerX + Math.cos(angle) * maxRadius, centerY + Math.sin(angle) * maxRadius);
             ctx.stroke();
         }
 
+        // Draw segments
         for (let i = 0; i < 8; i++) {
             const item = currentWheelData[i];
             const startAngle = (Math.PI / 4) * i - Math.PI / 2;
@@ -259,16 +282,19 @@ function renderPerfectWheel(canvasId, data) {
             if (item.score === minScore && minScore < 7 && item.score > 0) {
                 ctx.save(); ctx.fillStyle = `rgba(220, 53, 69, ${pulseOpacity})`;
                 ctx.beginPath(); ctx.moveTo(centerX, centerY);
-                ctx.arc(centerX, centerY, r + 8, startAngle, endAngle); ctx.fill(); ctx.restore();
+                ctx.arc(centerX, centerY, r + 5, startAngle, endAngle); ctx.fill(); ctx.restore();
             }
             ctx.fillStyle = 'rgba(46, 125, 50, 0.7)';
             ctx.beginPath(); ctx.moveTo(centerX, centerY);
             ctx.arc(centerX, centerY, r, startAngle, endAngle); ctx.closePath(); ctx.fill();
-            ctx.strokeStyle = '#000000'; ctx.lineWidth = 3; ctx.stroke();
+            ctx.strokeStyle = '#000000'; ctx.lineWidth = 2; ctx.stroke();
         }
 
-        ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px "Inter", sans-serif';
+        // Draw labels with dynamic font size
+        const fontSize = width < 400 ? '9px' : '11px';
+        ctx.fillStyle = '#1a1a1a'; ctx.font = `bold ${fontSize} "Inter", sans-serif`;
         ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+        
         for (let i = 0; i < 8; i++) {
             const item = currentWheelData[i];
             const axisAngle = (Math.PI / 4) * i - Math.PI / 2;
