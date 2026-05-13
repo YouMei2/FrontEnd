@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - My Life Wheel</title>
+    <link rel="stylesheet" href="style.css"> <style>
+    .settings-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+    .settings-card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        margin-bottom: 25px;
+    }
+    .settings-card h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f4f4f4;
+        padding-bottom: 10px;
+    }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; color: #666; font-size: 0.9rem; }
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    .btn-save {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+    .btn-save:hover { background: #218838; }
+    .btn-delete {
+        background: #fff;
+        color: #dc3545;
+        border: 1px solid #dc3545;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .btn-delete:hover { background: #dc3545; color: white; }
+</style>
+</head>
+<body style="background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, sans-serif;">
+
+<div class="settings-container">
+    <a href="index.html" style="text-decoration: none; color: #28a745;">← Back to Dashboard</a>
+    <h1 style="text-align: center; color: #2d5a27;">Settings</h1>
+
+    <div class="settings-card">
+        <h2>Change Profile Name</h2>
+        <div class="form-group">
+            <label>New Name</label>
+            <input type="text" id="newName" placeholder="Enter your name">
+        </div>
+        <button class="btn-save" onclick="updateName()">Update Name</button>
+    </div>
+
+    <div class="settings-card">
+        <h2>Change Email Address</h2>
+        <p style="font-size: 0.8rem; color: #888;">Note: You will need to re-verify your account.</p>
+        <div class="form-group">
+            <label>New Email</label>
+            <input type="email" id="newEmail" placeholder="newemail@example.com">
+        </div>
+        <button class="btn-save" onclick="updateEmail()">Update Email & Verify</button>
+    </div>
+
+    <div class="settings-card">
+        <h2>Change Password</h2>
+        <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" id="oldPassword" placeholder="••••••••">
+        </div>
+        <div class="form-group">
+            <label>New Password</label>
+            <input type="password" id="newPassword" placeholder="••••••••">
+        </div>
+        <button class="btn-save" onclick="updatePassword()">Change Password</button>
+    </div>
+
+    <button class="btn-delete" onclick="deleteAccount()">Delete Account Forever</button>
+</div>
+
+<script src="settings.js"></script>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>About the project</h3>
+            <p>This service was created as a personal tool for life management and increasing efficiency. I believe that balance in all areas is the key to true success.</p>
+        </div>
+
+        <div class="footer-section inspiration">
+            <h3>Inspiration</h3>
+            <p>The project idea was born after reading the book <a href="https://www.litres.ru/book/aleksey-ivanovich-tolkachev/ekstremalnyy-taym-menedzhment-68808090/" target="_blank">«Extreme Time Management»</a>. The wheel of balance is the foundation on which my planning system is built.</p>
+        </div>
+
+        <div class="footer-section details">
+            <h3>Information</h3>
+            <p><strong>Created:</strong> April 2026</p>
+            <p><strong>Version:</strong> 1.0 (Beta)</p>
+            <div class="social-links">
+                <span><a href="https://github.com/YouMei2" target="_blank" >GitHub</a></span> • <span><a href="https://t.me/Giorgione5576" target="_blank">Telegram</a> </span> • <span>LinkedIn</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 My Life Wheel. Developed with a focus on results.
+    </div>
+</footer>
+</body>
+</html>

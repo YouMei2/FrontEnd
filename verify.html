@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Account | My Life Wheel</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles specifically for the confirmation card */
+        .verify-card {
+            text-align: center;
+        }
+        .verify-card p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .code-input {
+            letter-spacing: 8px;
+            font-size: 24px !important;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            border: 2px solid #28a745 !important; /* Immediately highlight with brand color */
+        }
+        #displayEmail {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">My Life Wheel</div>
+    <div class="nav-btns">
+        <button onclick="location.href='register.html'">Back</button>
+    </div>
+</div>
+
+<div class="container auth-container verify-card">
+    <h2>Confirm Your Email</h2>
+    <p>We sent a 6-digit verification code to <br><span id="displayEmail">loading...</span></p>
+
+    <form class="input-group" id="verifyForm">
+        <input type="text"
+               id="codeInput"
+               class="code-input"
+               placeholder="000000"
+               maxlength="6"
+               required
+               pattern="\d{6}"
+               autocomplete="one-time-code">
+
+        <button type="submit" class="btn-add" id="verifyBtn">Verify Account</button>
+    </form>
+
+    <div class="auth-footer">
+        Didn't get the code?
+        <a href="#" id="resendBtn">Resend</a>
+    </div>
+</div>
+
+<script src="verify.js"></script>
+</body>
+</html>

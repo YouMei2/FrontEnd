@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Life Wheel - Tasks & Balance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="quote-container">
+    <div id="typewriter-quote" class="quote-text"></div>
+</div>
+
+<div class="header">
+    <div class="logo">My Life Wheel</div>
+    <div class="nav-btns" id="auth-section">
+
+        <div id="guest-btns">
+            <button onclick="location.href='register.html'">Register</button>
+            <button onclick="location.href='login.html'">Login</button>
+        </div>
+
+        <div id="user-profile" style="display: none; align-items: center; gap: 10px;">
+            <span id="welcome-text" style="font-weight: bold; color: #2e7d32; margin-right: 5px;"></span>
+
+            <button onclick="location.href='settings.html'" class="btn-settings">Settings</button>
+
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </div>
+</div>
+
+<div class="main-content-layout">
+    <div class="container tasks-column">
+        <h2>My Tasks</h2>
+        <div class="progress-section">
+            <div class="progress-labels">
+                <span class="progress-title">PROGRESS BAR</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="daily-progress">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <form class="input-group" id="taskForm">
+            <input type="text" id="nameInput" placeholder="Category (Health, Finance...)" required>
+            <input type="text" id="taskInput" placeholder="What needs to be done?" required>
+            <select id="priorityInput">
+                <option value="low">🌱 Simple task</option>
+                <option value="medium">⚡ Medium task</option>
+                <option value="high">🔥 Important task</option>
+                <option value="goal">🏆 Personal goal</option>
+            </select>
+            <button type="submit" class="btn-add">Add Task</button>
+        </form>
+        <ul id="taskList"></ul>
+    </div>
+
+    <div class="container habits-column">
+        <h2>Habit Tracker</h2>
+        <div class="input-group">
+            <input type="text" id="habitInput" placeholder="New habit (e.g. Drink 2L water)">
+            <button onclick="addHabit()" class="btn-add">Add Habit</button>
+        </div>
+        <ul id="habitList" class="habit-list">
+        </ul>
+    </div>
+</div>
+
+<div class="diary-wheel-layout">
+    <div class="container diary-section">
+        <h2>Reflection Diary</h2>
+        <form id="diaryForm" class="input-group">
+            <input type="text" id="diaryTitle" placeholder="Day title (e.g. Breakthrough Day)" required>
+            <div class="mood-selector">
+                <label>Mood:</label>
+                <select id="diaryMood">
+                    <option value="😊">😊 Excellent</option>
+                    <option value="😐">😐 Normal</option>
+                    <option value="😔">😔 Tough day</option>
+                    <option value="🚀">🚀 Productive</option>
+                </select>
+            </div>
+            <textarea id="diaryText" placeholder="How do you feel today? What would you like to change?" rows="5" required></textarea>
+            <button type="submit" class="btn-add">Record in history</button>
+        </form>
+        <div id="diaryLog" class="diary-log">
+        </div>
+    </div>
+
+    <div class="container wheel-section-new">
+        <div class="wheel-card">
+            <h2 class="wheel-title">Wheel of Life</h2>
+            <div class="canvas-wrapper">
+                <canvas id="balanceChart" width="550" height="550"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h3>About the project</h3>
+            <p>This service was created as a personal tool for life management and increasing efficiency. I believe that balance in all areas is the key to true success.</p>
+        </div>
+
+        <div class="footer-section inspiration">
+            <h3>Inspiration</h3>
+            <p>The project idea was born after reading the book <a href="https://www.litres.ru/book/aleksey-ivanovich-tolkachev/ekstremalnyy-taym-menedzhment-68808090/" target="_blank">«Extreme Time Management»</a>. The wheel of balance is the foundation on which my planning system is built.</p>
+        </div>
+
+        <div class="footer-section details">
+            <h3>Information</h3>
+            <p><strong>Created:</strong> April 2026</p>
+            <p><strong>Version:</strong> 1.0 (Beta)</p>
+            <div class="social-links">
+                <span><a href="https://github.com/YouMei2" target="_blank" >GitHub</a></span> • <span><a href="https://t.me/Giorgione5576" target="_blank">Telegram</a> </span> • <span>LinkedIn</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 My Life Wheel. Developed with a focus on results.
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
