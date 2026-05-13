@@ -296,80 +296,99 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 .social-links {margin-top: 15px; font-size: 14px; color: #28a745;}
 .footer-bottom { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid #f5f5f5; font-size: 12px; color: #999; }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE AND MOBILE OPTIMIZATION --- */
+
+/* For Tablets and smaller laptops */
 @media (max-width: 1200px) {
-    .main-content-layout, .diary-wheel-layout { flex-direction: column; padding: 0 20px; gap: 20px; }
-    .tasks-column, .habits-column, .diary-section, .wheel-section-new { width: 100%; }
-    .quote-container { padding: 0 20px; }
-    .container { padding: 20px; }
-    .wheel-card { padding: 20px; }
-    .canvas-wrapper { width: 100%; height: 400px; max-width: 400px; }
+    .main-content-layout, .diary-wheel-layout {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 20px;
+    }
+    .tasks-column, .habits-column, .diary-section, .wheel-section-new {
+        width: 100%;
+    }
+    .canvas-wrapper {
+        width: 100%;
+        height: auto;
+        max-width: 450px;
+        margin: 0 auto;
+    }
 }
 
+/* For Mobile Devices (Phones) */
 @media (max-width: 768px) {
-    body { padding-top: 80px; }
-    .header { height: 60px; padding: 10px 3%; }
-    .logo { font-size: 1.2rem !important; }
-    .nav-btns { gap: 10px; }
-    .nav-btns button { padding: 6px 15px !important; font-size: 12px !important; }
-    .quote-container { padding: 0 15px; margin-bottom: 20px; }
-    .quote-text { font-size: 18px; }
-    .main-content-layout, .diary-wheel-layout { padding: 10px 15px 0; gap: 15px; }
-    .container { padding: 15px; margin-bottom: 20px; }
-    .wheel-card { padding: 15px; }
-    .canvas-wrapper { height: 300px; max-width: 300px; }
-    .footer-content { grid-template-columns: 1fr; gap: 20px; padding: 0 15px; }
-}
+    /* 1. Body & Layout Adjustments */
+    body {
+        padding-top: 90px !important; /* Increased space to prevent header overlap */
+        background: #f4f7f8; 
+    }
 
-.language-selector {
-    margin-right: 15px;
-}
+    .main-content-layout, .diary-wheel-layout {
+        padding: 10px 15px;
+        gap: 20px;
+    }
 
-#langBtn {
-    background: transparent;
-    border: 1px solid #2e7d32;
-    color: #2e7d32;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
+    .container {
+        padding: 20px 15px !important;
+        margin-bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 15px;
+    }
 
-#langBtn:hover {
-    background: #e8f5e9;
-}
-
-/* --- FINAL TOUCHES FOR MOBILE EXPERIENCE --- */
-
-@media (max-width: 768px) {
-    /* 1. Header and Logo optimization */
+    /* 2. Compact Header Fix */
     .header {
-        height: 65px;
-        padding: 0 15px;
+        height: 60px !important;
+        padding: 0 10px !important;
     }
 
     .logo {
-        font-size: 1.1rem !important; /* Slightly smaller for mobile screens */
+        font-size: 1rem !important;
+        letter-spacing: 0;
     }
 
-    /* 2. Main Containers */
-    .container {
-        padding: 20px 15px;
-        margin-bottom: 20px;
-        border-radius: 15px; /* Softer corners for mobile */
+    .nav-btns {
+        gap: 6px !important;
     }
 
-    /* 3. The Wheel - Responsive sizing */
+    .nav-btns button {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+
+    .language-selector {
+        margin-right: 5px;
+    }
+
+    /* 3. Quote of the Day Fix */
+    .quote-container {
+        margin: 0 auto 20px !important;
+        padding: 0 10px !important;
+    }
+
+    .quote-text {
+        font-size: 17px !important;
+        line-height: 1.3;
+    }
+
+    /* 4. The Wheel (Most important fix) */
     .wheel-card {
-        padding: 15px;
+        padding: 15px !important;
+    }
+
+    .wheel-title {
+        font-size: 22px !important;
+        margin-bottom: 20px;
     }
 
     .canvas-wrapper {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 320px; /* Perfect size for most smartphones */
-        aspect-ratio: 1 / 1; /* Keeps it perfectly round */
+        width: 90vw !important; /* Forces the wheel to stay within screen width */
+        height: 90vw !important;
+        max-width: 310px !important; /* Limits maximum size on mobile */
+        max-height: 310px !important;
+        margin: 0 auto !important;
+        aspect-ratio: 1 / 1;
     }
 
     #wheelCanvas {
@@ -377,56 +396,61 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
         height: 100% !important;
     }
 
-    /* 4. Habit Tracker - Better spacing for fingers */
+    /* 5. Habit Tracker Mobile Fix */
     .habit-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
+        padding: 15px !important;
     }
 
     .habit-days {
         width: 100%;
-        justify-content: space-between; /* Spread days across the width */
+        margin-top: 12px;
+        justify-content: space-between;
     }
 
     .day-check {
-        width: 32px; /* Bigger checkboxes for easier tapping */
-        height: 32px;
+        width: 34px !important; /* Larger touch target */
+        height: 34px !important;
     }
 
-    /* 5. Navigation Buttons */
-    .nav-btns {
-        gap: 8px;
+    /* 6. Tasks and Forms */
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
     }
 
-    .nav-btns button {
-        padding: 6px 12px !important;
-        font-size: 13px !important;
+    li:hover {
+        transform: none; /* Disable hover effect on mobile to prevent flickering */
     }
 
-    /* 6. Footer Layout Fix */
+    /* 7. Footer Optimization */
     .footer-content {
-        grid-template-columns: 1fr; /* Stack columns vertically */
-        gap: 40px;
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
         text-align: center;
+        padding: 0 20px;
     }
 
     .footer-section {
         display: flex;
         flex-direction: column;
         align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
     }
 
-    /* 7. Typography */
-    .quote-text {
-        font-size: 18px;
-        padding: 0 10px;
+    .footer-section:last-child {
+        border-bottom: none;
     }
 }
 
-/* Fix for very small phones (iPhone SE etc.) */
+/* Specific fix for ultra-small screens */
 @media (max-width: 380px) {
     .logo {
-        display: none; /* Hide logo text if it overlaps with buttons */
+        font-size: 0.85rem !important;
+    }
+    .nav-btns button {
+        padding: 4px 8px !important;
+        font-size: 10px !important;
     }
 }
