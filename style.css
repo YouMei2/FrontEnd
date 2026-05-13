@@ -296,30 +296,6 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 .social-links {margin-top: 15px; font-size: 14px; color: #28a745;}
 .footer-bottom { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid #f5f5f5; font-size: 12px; color: #999; }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 1200px) {
-    .main-content-layout, .diary-wheel-layout { flex-direction: column; padding: 0 20px; gap: 20px; }
-    .tasks-column, .habits-column, .diary-section, .wheel-section-new { width: 100%; }
-    .quote-container { padding: 0 20px; }
-    .container { padding: 20px; }
-    .wheel-card { padding: 20px; }
-    .canvas-wrapper { width: 100%; height: 400px; max-width: 400px; }
-}
-
-@media (max-width: 768px) {
-    body { padding-top: 80px; }
-    .header { height: 60px; padding: 10px 3%; }
-    .logo { font-size: 1.2rem !important; }
-    .nav-btns { gap: 10px; }
-    .nav-btns button { padding: 6px 15px !important; font-size: 12px !important; }
-    .quote-container { padding: 0 15px; margin-bottom: 20px; }
-    .quote-text { font-size: 18px; }
-    .main-content-layout, .diary-wheel-layout { padding: 10px 15px 0; gap: 15px; }
-    .container { padding: 15px; margin-bottom: 20px; }
-    .wheel-card { padding: 15px; }
-    .canvas-wrapper { height: 300px; max-width: 300px; }
-    .footer-content { grid-template-columns: 1fr; gap: 20px; padding: 0 15px; }
-}
 
 .language-selector {
     margin-right: 15px;
