@@ -339,3 +339,94 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 #langBtn:hover {
     background: #e8f5e9;
 }
+
+/* --- FINAL TOUCHES FOR MOBILE EXPERIENCE --- */
+
+@media (max-width: 768px) {
+    /* 1. Header and Logo optimization */
+    .header {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.1rem !important; /* Slightly smaller for mobile screens */
+    }
+
+    /* 2. Main Containers */
+    .container {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        border-radius: 15px; /* Softer corners for mobile */
+    }
+
+    /* 3. The Wheel - Responsive sizing */
+    .wheel-card {
+        padding: 15px;
+    }
+
+    .canvas-wrapper {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 320px; /* Perfect size for most smartphones */
+        aspect-ratio: 1 / 1; /* Keeps it perfectly round */
+    }
+
+    #wheelCanvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* 4. Habit Tracker - Better spacing for fingers */
+    .habit-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .habit-days {
+        width: 100%;
+        justify-content: space-between; /* Spread days across the width */
+    }
+
+    .day-check {
+        width: 32px; /* Bigger checkboxes for easier tapping */
+        height: 32px;
+    }
+
+    /* 5. Navigation Buttons */
+    .nav-btns {
+        gap: 8px;
+    }
+
+    .nav-btns button {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+    }
+
+    /* 6. Footer Layout Fix */
+    .footer-content {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 7. Typography */
+    .quote-text {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+}
+
+/* Fix for very small phones (iPhone SE etc.) */
+@media (max-width: 380px) {
+    .logo {
+        display: none; /* Hide logo text if it overlaps with buttons */
+    }
+}
