@@ -1,7 +1,7 @@
-const API_URL = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/tasks';
-const WHEEL_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/wheel';
-const HABITS_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/habits';
-const DIARY_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/diary';
+const API_URL = 'http://localhost:8080/tasks';
+const WHEEL_API = 'http://localhost:8080/wheel';
+const HABITS_API = 'http://localhost:8080/habits';
+const DIARY_API = 'http://localhost:8080/diary';
 
 // Pulsation variables
 let pulseOpacity = 0.2;
@@ -141,151 +141,151 @@ async function deleteTask(id) {
 
 //  WHEEL OF LIFE
 async function loadWheelData() {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId');
 
-    const defaultData = [
-        { label: 'Health and Sports', key: 'health', score: 0 },
-        { label: 'Friends and Environment', key: 'friends', score: 0 },
-        { label: 'Relationships', key: 'family', score: 0 },
-        { label: 'Career and Business', key: 'work', score: 0 },
-        { label: 'Finance', key: 'finance', score: 0 },
-        { label: 'Spirituality and Creativity', key: 'spiritual', score: 0 },
-        { label: 'Personal Growth', key: 'learning', score: 0 },
-        { label: 'Life Brightness', key: 'rest', score: 0 }
-    ];
+    const defaultData = [
+        { label: 'Health and Sports', key: 'health', score: 0 },
+        { label: 'Friends and Environment', key: 'friends', score: 0 },
+        { label: 'Relationships', key: 'family', score: 0 },
+        { label: 'Career and Business', key: 'work', score: 0 },
+        { label: 'Finance', key: 'finance', score: 0 },
+        { label: 'Spirituality and Creativity', key: 'spiritual', score: 0 },
+        { label: 'Personal Growth', key: 'learning', score: 0 },
+        { label: 'Life Brightness', key: 'rest', score: 0 }
+    ];
 
-    // If user doesn't exist, draw empty wheel and exit
-    if (!userId || userId === "null") {
-        currentWheelData = defaultData;
-        renderPerfectWheel('balanceChart', defaultData);
-        return;
-    }
+    // If user doesn't exist, draw empty wheel and exit
+    if (!userId || userId === "null") {
+        currentWheelData = defaultData;
+        renderPerfectWheel('balanceChart', defaultData);
+        return;
+    }
 
-    try {
-        const response = await fetch(`${WHEEL_API}/${userId}`);
-        if (!response.ok) throw new Error("Backend offline");
-        const data = await response.json();
-        const wheelData = defaultData.map(item => ({ ...item, score: data[item.key] || 0 }));
-        currentWheelData = wheelData;
-        renderPerfectWheel('balanceChart', wheelData);
-    } catch (err) {
-        console.warn("Backend unavailable or error, drawing default.");
-        currentWheelData = defaultData;
-        renderPerfectWheel('balanceChart', defaultData);
-    }
+    try {
+        const response = await fetch(`${WHEEL_API}/${userId}`);
+        if (!response.ok) throw new Error("Backend offline");
+        const data = await response.json();
+        const wheelData = defaultData.map(item => ({ ...item, score: data[item.key] || 0 }));
+        currentWheelData = wheelData;
+        renderPerfectWheel('balanceChart', wheelData);
+    } catch (err) {
+        console.warn("Backend unavailable or error, drawing default.");
+        currentWheelData = defaultData;
+        renderPerfectWheel('balanceChart', defaultData);
+    }
 }
 
 function setupWheelClick() {
-    const canvas = document.getElementById('balanceChart');
-    if (!canvas) return;
+    const canvas = document.getElementById('balanceChart');
+    if (!canvas) return;
 
-    canvas.addEventListener('click', async (event) => {
-        const userId = localStorage.getItem('userId');
-        if (!userId) return alert("Please login or register!");
+    canvas.addEventListener('click', async (event) => {
+        const userId = localStorage.getItem('userId');
+        if (!userId) return alert("Please login or register!");
 
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left - canvas.width / 2;
-        const y = event.clientY - rect.top - canvas.height / 2;
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left - canvas.width / 2;
+        const y = event.clientY - rect.top - canvas.height / 2;
 
-        let angle = Math.atan2(y, x) + Math.PI / 2;
-        if (angle < 0) angle += Math.PI * 2;
+        let angle = Math.atan2(y, x) + Math.PI / 2;
+        if (angle < 0) angle += Math.PI * 2;
 
-        const sectorIndex = Math.floor(angle / (Math.PI / 4)) % 8;
-        const distance = Math.sqrt(x*x + y*y);
-        const maxRadius = 200;
+        const sectorIndex = Math.floor(angle / (Math.PI / 4)) % 8;
+        const distance = Math.sqrt(x*x + y*y);
+        const maxRadius = 200;
 
-        let score = Math.ceil((distance / maxRadius) * 10);
-        if (score > 10) score = 10;
-        if (score < 1) score = 1;
+        let score = Math.ceil((distance / maxRadius) * 10);
+        if (score > 10) score = 10;
+        if (score < 1) score = 1;
 
-        const keys = ['health', 'friends', 'family', 'work', 'finance', 'spiritual', 'learning', 'rest'];
-        const clickedKey = keys[sectorIndex];
+        const keys = ['health', 'friends', 'family', 'work', 'finance', 'spiritual', 'learning', 'rest'];
+        const clickedKey = keys[sectorIndex];
 
-        try {
-            const res = await fetch(`${WHEEL_API}/${userId}`);
-            let currentData = await res.json();
-            currentData[clickedKey] = score;
-            currentData.userId = parseInt(userId);
+        try {
+            const res = await fetch(`${WHEEL_API}/${userId}`);
+            let currentData = await res.json();
+            currentData[clickedKey] = score;
+            currentData.userId = parseInt(userId);
 
-            await fetch(`${WHEEL_API}/${userId}`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(currentData)
-            });
-            await loadWheelData();
-        } catch (err) { console.error(err); }
-    });
+            await fetch(`${WHEEL_API}/${userId}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(currentData)
+            });
+            await loadWheelData();
+        } catch (err) { console.error(err); }
+    });
 }
 
 function renderPerfectWheel(canvasId, data) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    currentWheelData = data;
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    currentWheelData = data;
 
-    function draw() {
-        if (!currentWheelData) return;
-        const width = canvas.width;
-        const height = canvas.height;
-        const centerX = width / 2;
-        const centerY = height / 2;
-        const squareSize = 400;
-        const maxRadius = squareSize / 2;
-        const labelRadius = maxRadius + 50;
+    function draw() {
+        if (!currentWheelData) return;
+        const width = canvas.width;
+        const height = canvas.height;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const squareSize = 400;
+        const maxRadius = squareSize / 2;
+        const labelRadius = maxRadius + 50;
 
-        ctx.clearRect(0, 0, width, height);
-        const scores = currentWheelData.map(d => d.score).filter(s => s > 0);
-        const minScore = scores.length > 0 ? Math.min(...scores) : null;
+        ctx.clearRect(0, 0, width, height);
+        const scores = currentWheelData.map(d => d.score).filter(s => s > 0);
+        const minScore = scores.length > 0 ? Math.min(...scores) : null;
 
-        for (let i = 1; i <= 10; i++) {
-            const radius = (maxRadius / 10) * i;
-            ctx.strokeStyle = '#000000'; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.arc(centerX, centerY, radius, 0, Math.PI * 2); ctx.stroke();
-        }
+        for (let i = 1; i <= 10; i++) {
+            const radius = (maxRadius / 10) * i;
+            ctx.strokeStyle = '#000000'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(centerX, centerY, radius, 0, Math.PI * 2); ctx.stroke();
+        }
 
-        for (let i = 0; i < 8; i++) {
-            const angle = (Math.PI / 4) * i - Math.PI / 2;
-            ctx.beginPath(); ctx.moveTo(centerX, centerY);
-            ctx.lineTo(centerX + Math.cos(angle) * (maxRadius * 1.41), centerY + Math.sin(angle) * (maxRadius * 1.41));
-            ctx.stroke();
-        }
+        for (let i = 0; i < 8; i++) {
+            const angle = (Math.PI / 4) * i - Math.PI / 2;
+            ctx.beginPath(); ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX + Math.cos(angle) * (maxRadius * 1.41), centerY + Math.sin(angle) * (maxRadius * 1.41));
+            ctx.stroke();
+        }
 
-        for (let i = 0; i < 8; i++) {
-            const item = currentWheelData[i];
-            const startAngle = (Math.PI / 4) * i - Math.PI / 2;
-            const endAngle = startAngle + (Math.PI / 4);
-            const r = (maxRadius / 10) * item.score;
+        for (let i = 0; i < 8; i++) {
+            const item = currentWheelData[i];
+            const startAngle = (Math.PI / 4) * i - Math.PI / 2;
+            const endAngle = startAngle + (Math.PI / 4);
+            const r = (maxRadius / 10) * item.score;
 
-            if (item.score === minScore && minScore < 7 && item.score > 0) {
-                ctx.save(); ctx.fillStyle = `rgba(220, 53, 69, ${pulseOpacity})`;
-                ctx.beginPath(); ctx.moveTo(centerX, centerY);
-                ctx.arc(centerX, centerY, r + 8, startAngle, endAngle); ctx.fill(); ctx.restore();
-            }
-            ctx.fillStyle = 'rgba(46, 125, 50, 0.7)';
-            ctx.beginPath(); ctx.moveTo(centerX, centerY);
-            ctx.arc(centerX, centerY, r, startAngle, endAngle); ctx.closePath(); ctx.fill();
-            ctx.strokeStyle = '#000000'; ctx.lineWidth = 3; ctx.stroke();
-        }
+            if (item.score === minScore && minScore < 7 && item.score > 0) {
+                ctx.save(); ctx.fillStyle = `rgba(220, 53, 69, ${pulseOpacity})`;
+                ctx.beginPath(); ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, r + 8, startAngle, endAngle); ctx.fill(); ctx.restore();
+            }
+            ctx.fillStyle = 'rgba(46, 125, 50, 0.7)';
+            ctx.beginPath(); ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, r, startAngle, endAngle); ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = '#000000'; ctx.lineWidth = 3; ctx.stroke();
+        }
 
-        ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px "Inter", sans-serif';
-        ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
-        for (let i = 0; i < 8; i++) {
-            const item = currentWheelData[i];
-            const axisAngle = (Math.PI / 4) * i - Math.PI / 2;
-            const textAngle = axisAngle + (Math.PI / 8);
-            ctx.save();
-            ctx.translate(centerX + Math.cos(textAngle) * labelRadius, centerY + Math.sin(textAngle) * labelRadius);
-            let rotationAngle = textAngle + Math.PI / 2;
-            if (textAngle > 0 && textAngle < Math.PI) rotationAngle += Math.PI;
-            ctx.rotate(rotationAngle);
-            ctx.fillText(item.label.toUpperCase(), 0, 0); ctx.restore();
-        }
+        ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px "Inter", sans-serif';
+        ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+        for (let i = 0; i < 8; i++) {
+            const item = currentWheelData[i];
+            const axisAngle = (Math.PI / 4) * i - Math.PI / 2;
+            const textAngle = axisAngle + (Math.PI / 8);
+            ctx.save();
+            ctx.translate(centerX + Math.cos(textAngle) * labelRadius, centerY + Math.sin(textAngle) * labelRadius);
+            let rotationAngle = textAngle + Math.PI / 2;
+            if (textAngle > 0 && textAngle < Math.PI) rotationAngle += Math.PI;
+            ctx.rotate(rotationAngle);
+            ctx.fillText(item.label.toUpperCase(), 0, 0); ctx.restore();
+        }
 
-        pulseOpacity += 0.008 * pulseDirection;
-        if (pulseOpacity > 0.5 || pulseOpacity < 0.15) pulseDirection *= -1;
-        requestAnimationFrame(draw);
-    }
-    if (!window.isWheelAnimating) { window.isWheelAnimating = true; draw(); }
+        pulseOpacity += 0.008 * pulseDirection;
+        if (pulseOpacity > 0.5 || pulseOpacity < 0.15) pulseDirection *= -1;
+        requestAnimationFrame(draw);
+    }
+    if (!window.isWheelAnimating) { window.isWheelAnimating = true; draw(); }
 }
 
 // HABITS
@@ -463,7 +463,7 @@ async function initTypewriter() {
 
     try {
         // Request to your future endpoint
-        const response = await fetch('https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/ai-quote');
+        const response = await fetch('http://localhost:8080/ai-quote');
         if (response.ok) {
             quote = await response.text();
         } else {

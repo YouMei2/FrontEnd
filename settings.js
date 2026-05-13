@@ -1,4 +1,4 @@
-const API_BASE = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user';
+const API_BASE = 'http://localhost:8080/user';
 const userId = localStorage.getItem('userId');
 
 // 1. Name change — FIXED

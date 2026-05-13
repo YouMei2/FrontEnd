@@ -1,4 +1,4 @@
-const API_URL = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user';
+const API_URL = 'http://localhost:8080/user';
 
 const registerForm = document.getElementById('registerForm');
 

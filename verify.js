@@ -1,4 +1,4 @@
-const VERIFY_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user/verify';
+const VERIFY_API = 'http://localhost:8080/user/verify';
 
 document.addEventListener('DOMContentLoaded', () => {
     const displayEmail = document.getElementById('displayEmail');

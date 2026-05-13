@@ -320,22 +320,3 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
     .canvas-wrapper { height: 300px; max-width: 300px; }
     .footer-content { grid-template-columns: 1fr; gap: 20px; padding: 0 15px; }
 }
-
-.language-selector {
-    margin-right: 15px;
-}
-
-#langBtn {
-    background: transparent;
-    border: 1px solid #2e7d32;
-    color: #2e7d32;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-#langBtn:hover {
-    background: #e8f5e9;
-}
