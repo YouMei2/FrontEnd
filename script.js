@@ -1,7 +1,7 @@
-const API_URL = 'http://localhost:8080/tasks';
-const WHEEL_API = 'http://localhost:8080/wheel';
-const HABITS_API = 'http://localhost:8080/habits';
-const DIARY_API = 'http://localhost:8080/diary';
+const API_URL = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/tasks';
+const WHEEL_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/wheel';
+const HABITS_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/habits';
+const DIARY_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/diary';
 
 // Pulsation variables
 let pulseOpacity = 0.2;

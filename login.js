@@ -1,5 +1,5 @@
 // Endpoint for user authentication
-const LOGIN_URL = 'http://localhost:8080/user/login';
+const LOGIN_URL = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user/login';
 
 // Selecting the login form element from the DOM
 const loginForm = document.getElementById('loginForm');
