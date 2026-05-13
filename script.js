@@ -463,7 +463,7 @@ async function initTypewriter() {
 
     try {
         // Request to your future endpoint
-        const response = await fetch('http://localhost:8080/ai-quote');
+        const response = await fetch('https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/ai-quote');
         if (response.ok) {
             quote = await response.text();
         } else {
