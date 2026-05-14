@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (verifyForm) {
-        verifyForm.addEventListener('submit', async (e) => {
+        verifyForm.addEventListener('submit', async(e) => {
             e.preventDefault();
 
             console.log("verification...");
@@ -66,11 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const RESEND_API = 'http://localhost:8080/user/resend-code';
+const RESEND_API = 'http://https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user/resend-code';
 const resendBtn = document.getElementById('resendBtn'); // Make sure the button has this ID
 
 if (resendBtn) {
-    resendBtn.addEventListener('click', async (e) => {
+    resendBtn.addEventListener('click', async(e) => {
         e.preventDefault();
 
         const email = localStorage.getItem('emailForVerification');
