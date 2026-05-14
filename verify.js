@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const RESEND_API = 'http://https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user/resend-code';
+const RESEND_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user/resend-code';
 const resendBtn = document.getElementById('resendBtn'); // Make sure the button has this ID
 
 if (resendBtn) {
