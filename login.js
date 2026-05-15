@@ -6,20 +6,25 @@ const LOGIN_URL = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.az
 // Checks if the user is logged in. If not, redirects to the registration page.
 (function() {
     const currentUserId = localStorage.getItem('userId');
-    const currentPage = window.location.pathname;
+    const path = window.location.pathname.toLowerCase();
 
-    // List of pages that are accessible without being logged in
-    const publicPages = ['register.html', 'login.html', 'verify.html'];
+    // Checking for presence of keywords in the URL
+    const isLoginPage = path.includes('login.html');
+    const isRegisterPage = path.includes('register.html');
+    const isVerifyPage = path.includes('verify.html');
     
-    // Check if the current page is one of the public pages
-    const isPublicPage = publicPages.some(page => currentPage.includes(page));
+    // Root handling: if path is just "/" or ends with project folder name
+    const isRoot = path === '/' || path.endsWith('/') || path.endsWith('index.html');
 
-    if (!currentUserId && !isPublicPage) {
-        // Use replace to prevent the user from clicking "Back" to return to this protected page
+    const isPublicPage = isLoginPage || isRegisterPage || isVerifyPage;
+
+    // Redirection logic:
+    // Only redirect if there is NO userId AND it's NOT a public page AND it's NOT the root/index
+    if (!currentUserId && !isPublicPage && !isRoot) {
+        console.log("Access denied. Redirecting to registration...");
         window.location.replace('register.html');
     }
 })();
-
 
 // Selecting the login form element from the DOM
 const loginForm = document.getElementById('loginForm');
