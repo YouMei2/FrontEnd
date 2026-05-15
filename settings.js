@@ -48,10 +48,13 @@ async function updateEmail() {
     }
 }
 
+// 3. Update Password
 async function updatePassword() {
-    // Берем ID прямо из твоего HTML
-    const currentPassword = document.getElementById('oldPassword').value;
-    const newPassword = document.getElementById('newPassword').value;
+    const oldPassInput = document.getElementById('oldPassword');
+    const newPassInput = document.getElementById('newPassword');
+    
+    const currentPassword = oldPassInput.value;
+    const newPassword = newPassInput.value;
 
     if (!currentPassword || !newPassword) {
         return alert("Please fill in both password fields");
@@ -61,26 +64,67 @@ async function updatePassword() {
         return alert("New password must be at least 6 characters long");
     }
 
+    if (currentPassword === newPassword) {
+        return alert("New password cannot be the same as the current password");
+    }
+
     try {
         const response = await fetch(`${API_BASE}/${userId}/update-password`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                currentPassword: currentPassword, // Бэкенд обычно ждет такое имя поля
+                currentPassword: currentPassword,
                 newPassword: newPassword
             })
         });
 
         if (response.ok) {
             alert("Password updated successfully!");
-            document.getElementById('oldPassword').value = '';
-            document.getElementById('newPassword').value = '';
+            oldPassInput.value = '';
+            newPassInput.value = '';
         } else {
             const errorMsg = await response.text();
-            alert("Error: " + errorMsg);
+            alert("Error: " + (errorMsg || "Invalid current password"));
         }
     } catch (e) {
         console.error(e);
         alert("Server error. Please try again later.");
+    }
+}
+
+// 4. Delete Account (Safest method)
+async function deleteAccount() {
+    // Double confirmation to prevent accidental clicks
+    const firstConfirm = confirm("WARNING! You are about to permanently delete your account and all your data (wheel, tasks, diary). This action is irreversible. Do you want to continue?");
+    
+    if (!firstConfirm) return;
+
+    const finalPrompt = prompt("To confirm, please type 'DELETE' in all caps:");
+
+    if (finalPrompt !== "DELETE") {
+        return alert("Deletion cancelled. Confirmation text was incorrect.");
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/${userId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (response.ok) {
+            alert("Your account and all associated data have been successfully deleted. Farewell!");
+            
+            // Clear all session and local data
+            localStorage.clear();
+            
+            // Redirect to the registration page
+            window.location.href = 'register.html';
+        } else {
+            const errorMsg = await response.text();
+            alert("Failed to delete account: " + errorMsg);
+        }
+    } catch (e) {
+        console.error(e);
+        alert("An error occurred during deletion. Please check your connection.");
     }
 }
