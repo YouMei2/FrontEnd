@@ -1,5 +1,24 @@
 const VERIFY_API = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azurewebsites.net/user/verify';
 
+// --- Authentication Guard ---
+// Checks if the user is logged in. If not, redirects to the registration page.
+(function() {
+    const currentUserId = localStorage.getItem('userId');
+    const currentPage = window.location.pathname;
+
+    // List of pages that are accessible without being logged in
+    const publicPages = ['register.html', 'login.html', 'verify.html'];
+    
+    // Check if the current page is one of the public pages
+    const isPublicPage = publicPages.some(page => currentPage.includes(page));
+
+    if (!currentUserId && !isPublicPage) {
+        // Use replace to prevent the user from clicking "Back" to return to this protected page
+        window.location.replace('register.html');
+    }
+})();
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const displayEmail = document.getElementById('displayEmail');
     const verifyForm = document.getElementById('verifyForm');
