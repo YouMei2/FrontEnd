@@ -73,7 +73,7 @@ async function updatePassword() {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                currentPassword: currentPassword,
+                oldPassword: currentPassword,
                 newPassword: newPassword
             })
         });
