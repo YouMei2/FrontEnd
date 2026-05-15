@@ -7,20 +7,24 @@ const API_URL = 'https://wheel-web-site-api-apfhdfbxd7dud0cj.austriaeast-01.azur
     const currentUserId = localStorage.getItem('userId');
     const path = window.location.pathname.toLowerCase();
 
-    // Checking for presence of keywords in the URL
+    // 1. Define Public Pages
     const isLoginPage = path.includes('login.html');
     const isRegisterPage = path.includes('register.html');
     const isVerifyPage = path.includes('verify.html');
     
-    // Root handling: if path is just "/" or ends with project folder name
-    const isRoot = path === '/' || path.endsWith('/') || path.endsWith('index.html');
+    // 2. Enhanced Root/Home Page Detection
+    // Checks for: site root, trailing slash, index file, or the repository folder name
+    const isRoot = path === '/' || 
+                   path.endsWith('/') || 
+                   path.endsWith('index.html') || 
+                   path.endsWith('/frontend'); 
 
-    const isPublicPage = isLoginPage || isRegisterPage || isVerifyPage;
+    const isPublicPage = isLoginPage || isRegisterPage || isVerifyPage || isRoot;
 
-    // Redirection logic:
-    // Only redirect if there is NO userId AND it's NOT a public page AND it's NOT the root/index
-    if (!currentUserId && !isPublicPage && !isRoot) {
-        console.log("Access denied. Redirecting to registration...");
+    // 3. Redirection Logic
+    if (!currentUserId && !isPublicPage) {
+        console.log("Access denied. Unauthorized path: " + path);
+        // Use replace to prevent the user from getting stuck in a back-button loop
         window.location.replace('register.html');
     }
 })();
