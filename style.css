@@ -122,7 +122,7 @@ body {
 .main-content-layout, .diary-wheel-layout {
   display: flex;
   gap: 30px;
-  max-width: 2000px;
+  max-width: 1250px;
   margin: 0 auto 60px; /* Margin between blocks */
   padding: 20px 40px 0; /* Add padding-top for better separation from the quote */
   box-sizing: border-box;
