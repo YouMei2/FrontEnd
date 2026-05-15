@@ -1,82 +1,82 @@
 /* --- BASIC SETTINGS --- */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 100%;
-  margin: 0;
-  background: #eef2f3;
-  padding-top: 100px; /* Padding under header */
-  overflow-x: hidden;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ max-width: 100%;
+ margin: 0;
+ background: #eef2f3;
+ padding-top: 100px; /* Padding under header */
+ overflow-x: hidden;
 }
 
 /* --- QUOTE OF THE DAY (FIXING APPEARANCE) --- */
 .quote-container {
-  max-width: 1400px;
-  margin: 0 auto 30px; /* Bottom margin to main content */
-  padding: 0 40px;
-  text-align: center;
-  min-height: 40px; /* So the page doesn't jump */
+ max-width: 1400px;
+ margin: 0 auto 30px; /* Bottom margin to main content */
+ padding: 0 40px;
+ text-align: center;
+ min-height: 40px; /* So the page doesn't jump */
 }
 
 .quote-text {
-  font-size: 22px;
-  font-weight: 700;
-  color: #333;
-  font-style: italic;
-  letter-spacing: 0.9px;
-  line-height: 1.4;
+ font-size: 22px;
+ font-weight: 700;
+ color: #333;
+ font-style: italic;
+ letter-spacing: 0.9px;
+ line-height: 1.4;
 }
 
 /* Typewriter caret */
 .quote-text::after {
-  content: '|'; /* Add caret symbol */
-  margin-left: 5px;
-  color: #28a745;
-  animation: blink 0.7s infinite;
+ content: '|'; /* Add caret symbol */
+ margin-left: 5px;
+ color: #28a745;
+ animation: blink 0.7s infinite;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+ 0%, 100% { opacity: 1; }
+ 50% { opacity: 0; }
 }
 
 /* --- FIXED HEADER --- */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 70px;
-  background: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 5%;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  z-index: 9999;
-  box-sizing: border-box;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 70px;
+ background: white;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 10px 5%;
+ box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+ z-index: 9999;
+ box-sizing: border-box;
 }
 
 .logo {
-  color: #28a745 !important;
-  font-weight: 800 !important;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 1.4rem !important;
+ color: #28a745 !important;
+ font-weight: 800 !important;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ font-size: 1.4rem !important;
 }
 
 .nav-btns {
-  display: flex;
-  gap: 15px;
+ display: flex;
+ gap: 15px;
 }
 
 .nav-btns button {
-  padding: 8px 20px !important;
-  border-radius: 8px !important;
-  font-size: 14px !important;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+ padding: 8px 20px !important;
+ border-radius: 8px !important;
+ font-size: 14px !important;
+ font-weight: bold;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ white-space: nowrap;
 }
 
 /* buttons REGISTER / LOGIN */
@@ -86,47 +86,47 @@ body {
 .nav-btns button:last-child:hover { background-color: #f8f9fa !important; border-color: #bbb !important; color: #333 !important; }
 
 .auth-container {
-  max-width: 450px !important;
-  margin: 150px auto 50px !important;
-  text-align: center;
-  padding: 40px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+ max-width: 450px !important;
+ margin: 150px auto 50px !important;
+ text-align: center;
+ padding: 40px;
+ background: white;
+ border-radius: 12px;
+ box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
 .auth-container input {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 15px;
+ width: 100%;
+ box-sizing: border-box;
+ margin-bottom: 15px;
 }
 
 .auth-container button {
-  width: 100%;
-  padding: 12px;
+ width: 100%;
+ padding: 12px;
 }
 
 .auth-footer {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #666;
+ margin-top: 20px;
+ font-size: 14px;
+ color: #666;
 }
 
 .auth-footer a {
-  color: #28a745;
-  text-decoration: none;
-  font-weight: bold;
+ color: #28a745;
+ text-decoration: none;
+ font-weight: bold;
 }
 
 /* --- LAYOUTS (TASKS AND DIARY+WHEEL) --- */
 .main-content-layout, .diary-wheel-layout {
-  display: flex;
-  gap: 30px;
-  max-width: 2000px;
-  margin: 0 auto 60px; /* Margin between blocks */
-  padding: 20px 40px 0; /* Add padding-top for better separation from the quote */
-  box-sizing: border-box;
-  align-items: flex-start;
+ display: flex;
+ gap: 30px;
+ max-width: 2000px;
+ margin: 0 auto 60px; /* Margin between blocks */
+ padding: 20px 40px 0; /* Add padding-top for better separation from the quote */
+ box-sizing: border-box;
+ align-items: flex-start;
 }
 
 /* Column proportions (Tasks/Habits) */
@@ -139,13 +139,13 @@ body {
 
 /* --- CONTAINERS (COMMON STYLES) --- */
 .container {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1;
-  margin-bottom: 30px; /* Add bottom margin for better section separation */
+ background: white;
+ padding: 30px;
+ border-radius: 12px;
+ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+ position: relative;
+ z-index: 1;
+ margin-bottom: 30px; /* Add bottom margin for better section separation */
 }
 
 h2 { color: #333; text-align: center; font-weight: 800; margin-top: 0; margin-bottom: 25px; }
@@ -154,25 +154,25 @@ h2 { color: #333; text-align: center; font-weight: 800; margin-top: 0; margin-bo
 .input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 
 input, select, textarea {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  font-family: inherit;
+ padding: 12px;
+ border: 1px solid #ddd;
+ border-radius: 6px;
+ font-size: 16px;
+ font-family: inherit;
 }
 
 textarea { resize: none; } /* Prohibit resizing of the diary */
 
 .btn-add, .auth-container button, button[type="submit"] {
-  padding: 12px;
-  cursor: pointer;
-  background: #28a745 !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 6px !important;
-  font-weight: bold !important;
-  font-size: 16px;
-  transition: 0.3s;
+ padding: 12px;
+ cursor: pointer;
+ background: #28a745 !important;
+ color: white !important;
+ border: none !important;
+ border-radius: 6px !important;
+ font-weight: bold !important;
+ font-size: 16px;
+ transition: 0.3s;
 }
 
 .btn-add:hover { background: #218838 !important; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2); }
@@ -180,9 +180,9 @@ textarea { resize: none; } /* Prohibit resizing of the diary */
 /* --- TASK LIST --- */
 ul { list-style: none; padding: 0; }
 li {
-  background: #fff; margin: 10px 0; padding: 15px; border-radius: 8px;
-  border-left: 6px solid #28a745; display: flex; justify-content: space-between;
-  align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: 0.2s;
+ background: #fff; margin: 10px 0; padding: 15px; border-radius: 8px;
+ border-left: 6px solid #28a745; display: flex; justify-content: space-between;
+ align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: 0.2s;
 }
 li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 .task-content { display: flex; align-items: center; gap: 15px; }
@@ -190,9 +190,9 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 
 /* --- HABIT TRACKER --- */
 .habit-item {
-  display: flex; justify-content: space-between; align-items: center;
-  background: #fff; padding: 20px; margin-bottom: 12px; border-radius: 12px;
-  border-left: 6px solid #28a745; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+ display: flex; justify-content: space-between; align-items: center;
+ background: #fff; padding: 20px; margin-bottom: 12px; border-radius: 12px;
+ border-left: 6px solid #28a745; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 .habit-name { font-weight: 700; color: #333; font-size: 1.1rem; flex: 1; }
 .habit-days { display: flex; gap: 12px; }
@@ -201,14 +201,14 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 
 /* Modern checkboxes */
 .day-check {
-  appearance: none; -webkit-appearance: none; width: 28px; height: 28px;
-  background-color: #f0f0f0; border: 2px solid #e0e0e0; border-radius: 8px;
-  cursor: pointer; position: relative; transition: all 0.2s ease;
+ appearance: none; -webkit-appearance: none; width: 28px; height: 28px;
+ background-color: #f0f0f0; border: 2px solid #e0e0e0; border-radius: 8px;
+ cursor: pointer; position: relative; transition: all 0.2s ease;
 }
 .day-check:checked { background-color: #28a745; border-color: #28a745; }
 .day-check:checked::after {
-  content: '✓'; position: absolute; color: white; font-size: 16px;
-  font-weight: bold; top: 50%; left: 50%; transform: translate(-50%, -50%);
+ content: '✓'; position: absolute; color: white; font-size: 16px;
+ font-weight: bold; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
 /* Week streak */
@@ -218,17 +218,17 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 
 /* Active streak (Green) */
 .habit-streak.streak-active {
-  background-color: #28a745 !important;
-  color: white !important;
-  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
-  transition: all 0.3s ease;
+ background-color: #28a745 !important;
+ color: white !important;
+ box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+ transition: all 0.3s ease;
 }
 
 /* Shake animation */
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
+ 0%, 100% { transform: translateX(0); }
+ 20%, 60% { transform: translateX(-5px); }
+ 40%, 80% { transform: translateX(5px); }
 }
 
 /* --- REFLECTION DIARY (STYLES FOR ENTRY LIST) --- */
@@ -258,31 +258,31 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 
 /* --- BALANCE WHEEL (RESTORING BEAUTY) --- */
 .wheel-card {
-  background: #ffffff;
-  padding: 40px; /* Restored spaciousness */
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+ background: #ffffff;
+ padding: 40px; /* Restored spaciousness */
+ border-radius: 24px;
+ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 
 .wheel-title {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 30px;
-  border-bottom: 3px solid #28a745;
-  padding-bottom: 10px;
+ font-size: 28px;
+ font-weight: 800;
+ margin-bottom: 30px;
+ border-bottom: 3px solid #28a745;
+ padding-bottom: 10px;
 }
 
 .canvas-wrapper {
-  width: 550px;
-  height: 550px;
-  position: relative;
-  /* Centering canvas inside wrapper if needed */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ width: 550px;
+ height: 550px;
+ position: relative;
+ /* Centering canvas inside wrapper if needed */
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 
@@ -298,25 +298,25 @@ li:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1200px) {
-  .main-content-layout, .diary-wheel-layout { flex-direction: column; padding: 0 20px; gap: 20px; }
-  .tasks-column, .habits-column, .diary-section, .wheel-section-new { width: 100%; }
-  .quote-container { padding: 0 20px; }
-  .container { padding: 20px; }
-  .wheel-card { padding: 20px; }
-  .canvas-wrapper { width: 100%; height: 400px; max-width: 400px; }
+ .main-content-layout, .diary-wheel-layout { flex-direction: column; padding: 0 20px; gap: 20px; }
+ .tasks-column, .habits-column, .diary-section, .wheel-section-new { width: 100%; }
+ .quote-container { padding: 0 20px; }
+ .container { padding: 20px; }
+ .wheel-card { padding: 20px; }
+ .canvas-wrapper { width: 100%; height: 400px; max-width: 400px; }
 }
 
 @media (max-width: 768px) {
-  body { padding-top: 80px; }
-  .header { height: 60px; padding: 10px 3%; }
-  .logo { font-size: 1.2rem !important; }
-  .nav-btns { gap: 10px; }
-  .nav-btns button { padding: 6px 15px !important; font-size: 12px !important; }
-  .quote-container { padding: 0 15px; margin-bottom: 20px; }
-  .quote-text { font-size: 18px; }
-  .main-content-layout, .diary-wheel-layout { padding: 10px 15px 0; gap: 15px; }
-  .container { padding: 15px; margin-bottom: 20px; }
-  .wheel-card { padding: 15px; }
-  .canvas-wrapper { height: 300px; max-width: 300px; }
-  .footer-content { grid-template-columns: 1fr; gap: 20px; padding: 0 15px; }
+ body { padding-top: 80px; }
+ .header { height: 60px; padding: 10px 3%; }
+ .logo { font-size: 1.2rem !important; }
+ .nav-btns { gap: 10px; }
+ .nav-btns button { padding: 6px 15px !important; font-size: 12px !important; }
+ .quote-container { padding: 0 15px; margin-bottom: 20px; }
+ .quote-text { font-size: 18px; }
+ .main-content-layout, .diary-wheel-layout { padding: 10px 15px 0; gap: 15px; }
+ .container { padding: 15px; margin-bottom: 20px; }
+ .wheel-card { padding: 15px; }
+ .canvas-wrapper { height: 300px; max-width: 300px; }
+ .footer-content { grid-template-columns: 1fr; gap: 20px; padding: 0 15px; }
 }
